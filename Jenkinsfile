@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "global-registry.virtapp.io/library/apache-appflex"
+    registry = "global-registry.virtapp.io/library/apache-virtapp"
     registryCredential = 'harbor-registry'
     dockerImage = ''
   }
@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/virtapp/wordpress-appflex.git'
+        git 'https://github.com/virtapp/wordpress-virtapp.git'
       }
     }
     stage('Building image') {
