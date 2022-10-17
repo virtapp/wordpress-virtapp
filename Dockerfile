@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/*
 RUN add-apt-repository ppa:ondrej/php -y
-RUN apt-get update && apt-get -y upgrade && DEBIAN_FRONTEND=noninteractive apt-get -y install \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     apache2 php7.0 php7.0-mysql libapache2-mod-php7.0 curl mysql-client git nano
 
 # Enable apache mods.
