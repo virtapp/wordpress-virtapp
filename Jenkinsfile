@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "virtapp/wordpress-virtapp"
+    registry = "registry.hub.docker.com/virtapp/wordpress-virtapp"
     registryCredential = 'docker-hub-credentials'
     dockerImage = ''
   }
@@ -21,7 +21,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-            docker.withRegistry( 'https://registry.hub.docker.com', '	docker-hub-credentials' ) {
+            docker.withRegistry( 'https://' + registry, registryCredential ) {
             dockerImage.push()
           }
         }
