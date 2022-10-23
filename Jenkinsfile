@@ -1,7 +1,7 @@
 pipeline {
   environment {
-    registry = "global-registry.virtapp.io/library/virtapp"
-    registryCredential = 'harbor-registry'
+    registry = "virtapp/wordpress-virtapp"
+    registryCredential = 'docker-hub-credentials'
     dockerImage = ''
   }
   agent any
