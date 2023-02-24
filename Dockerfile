@@ -8,15 +8,15 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 RUN add-apt-repository ppa:ondrej/php -y
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    apache2 php7.0 php7.0-mysql libapache2-mod-php7.0 curl mysql-client git nano
+    apache2 php7.4 php7.4-common php7.4-mysql php7.4-xml php7.4-xmlrpc php7.4-curl php7.4-gd php7.4-imagick php7.4-cli php7.4-dev php7.4-imap php7.4-mbstring php7.4-opcache php7.4-soap php7.4-zip php7.4-intl -y curl mysql-client git nano
 
 # Enable apache mods.
-RUN a2enmod php7.0
+RUN a2enmod php7.4
 RUN a2enmod rewrite
 
 # Update the PHP.ini file, enable <? ?> tags and quieten logging.
-RUN sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php/7.0/apache2/php.ini
-RUN sed -i "s/error_reporting = .*$/error_reporting = E_ERROR | E_WARNING | E_PARSE/" /etc/php/7.0/apache2/php.ini
+RUN sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php/7.4/apache2/php.ini
+RUN sed -i "s/error_reporting = .*$/error_reporting = E_ERROR | E_WARNING | E_PARSE/" /etc/php/7.4/apache2/php.ini
 
 # Manually set up the apache environment variables
 ENV APACHE_RUN_USER www-data
@@ -33,7 +33,6 @@ ADD www /var/www
 
 # Clone the conf files into the docker container
 RUN cd /var/www && git clone https://github.com/virtapp/site-virtapp.git
-#WORKDIR /mnt/appflex
 
 
 # Update the default apache site with the config we created.
